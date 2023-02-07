@@ -23,6 +23,15 @@ public class KataStringCalculatorTest {
         assertThat(KataStringCalculator.add("2,3,12,7")).isEqualTo(24);
     }
 
+    @Test
+    public void testThatAddCanHandleLineSeparator(){
+        assertThat(KataStringCalculator.add("1\n2,3")).isEqualTo(6);
 
+    }
+
+    @Test
+    public void testThatCharSequenceCommaAndLineBreakFails(){
+        assertThat(KataStringCalculator.add("1,\n")).isZero();
+    }
 
 }
