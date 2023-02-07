@@ -34,4 +34,9 @@ public class KataStringCalculatorTest {
         assertThat(KataStringCalculator.add("1,\n")).isZero();
     }
 
+    @Test
+    public void testThatDifferentDelimiterWorks(){
+        assertThat(KataStringCalculator.add("//;\n1;2")).isEqualTo(3);
+    }
+
 }
