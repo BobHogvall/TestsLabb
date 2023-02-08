@@ -3,10 +3,8 @@ package andraUppgiften;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
-
-public class KataStringCalculatorTest {
+class KataStringCalculatorTest {
 
     @Test
     void testAdd(){
@@ -49,9 +47,7 @@ public class KataStringCalculatorTest {
     @Test
     void negativeNumbersShouldThrowExceptAndPrintNumbers(){
           Exception exception = assertThrows(NumberFormatException.class,
-                   () -> {
-                       KataStringCalculator.add("3,-5,-9,-22");
-                   });
+                   () -> KataStringCalculator.add("3,-5,-9,-22"));
            String expectedMessage = "negatives not allowed";
            assertThat(expectedMessage).isEqualTo(exception.getMessage());
         System.out.println(expectedMessage);
