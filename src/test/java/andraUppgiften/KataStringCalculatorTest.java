@@ -30,13 +30,18 @@ public class KataStringCalculatorTest {
     }
 
     @Test
-    public void testThatCharSequenceCommaAndLineBreakFails(){
+    public void testThatCharSequenceLineBreakAfterCommaFails(){
         assertThat(KataStringCalculator.add("1,\n")).isZero();
     }
 
     @Test
     public void testThatDifferentDelimiterWorks(){
         assertThat(KataStringCalculator.add("//;\n1;2")).isEqualTo(3);
+    }
+
+    @Test
+    public void testAnotherDelimiter(){
+        assertThat(KataStringCalculator.add("//o\n1o2")).isEqualTo(3);
     }
 
 }
