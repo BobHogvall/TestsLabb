@@ -2,6 +2,8 @@ package andraUppgiften;
 
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class KataStringCalculatorTest {
@@ -42,6 +44,19 @@ public class KataStringCalculatorTest {
     @Test
     public void testAnotherDelimiter(){
         assertThat(KataStringCalculator.add("//o\n1o2")).isEqualTo(3);
+    }
+
+    @Test
+    public void testNegativeNumbersShouldThrowExceptAndPrintNumbers(){
+          Exception exception = assertThrows(NumberFormatException.class,
+                   () -> {
+                       KataStringCalculator.add("3,-5,-9,-22");
+                   });
+
+           String expectedMessage = "negatives not allowed";
+           assertThat(expectedMessage).isEqualTo(exception.getMessage());
+        System.out.println(expectedMessage);
+
     }
 
 }
