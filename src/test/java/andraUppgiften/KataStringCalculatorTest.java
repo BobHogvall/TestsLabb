@@ -47,16 +47,19 @@ public class KataStringCalculatorTest {
     }
 
     @Test
-    public void testNegativeNumbersShouldThrowExceptAndPrintNumbers(){
+    public void negativeNumbersShouldThrowExceptAndPrintNumbers(){
           Exception exception = assertThrows(NumberFormatException.class,
                    () -> {
                        KataStringCalculator.add("3,-5,-9,-22");
                    });
-
            String expectedMessage = "negatives not allowed";
            assertThat(expectedMessage).isEqualTo(exception.getMessage());
         System.out.println(expectedMessage);
+    }
 
+    @Test
+    public void ignoreNumbersLargerThan1000(){
+        assertThat(KataStringCalculator.add("2,3,1007")).isEqualTo(5);
     }
 
 }

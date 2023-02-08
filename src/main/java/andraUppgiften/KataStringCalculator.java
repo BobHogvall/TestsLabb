@@ -25,6 +25,7 @@ public class KataStringCalculator {
             try {
                 sum = Arrays.stream(numbers.split("[,\n]"))
                         .mapToInt(Integer::parseInt)
+                        .filter(n -> n < 1001)
                         .sum();
                 return sum;
             } catch (NumberFormatException e) {
