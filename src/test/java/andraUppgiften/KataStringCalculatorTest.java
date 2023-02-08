@@ -9,45 +9,45 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class KataStringCalculatorTest {
 
     @Test
-    public void testAdd(){
+    void testAdd(){
         var test = KataStringCalculator.add("2,3");    //given
         assertThat(test).isEqualTo(5);  //then and when
     }
 
     @Test
-    public void testThatAddWorksWithException(){
+    void testThatAddWorksWithException(){
         var testShouldFail = KataStringCalculator.add(",3");
         assertThat(testShouldFail).isZero();
     }
 
     @Test
-    public void testThatAddWorksWithUnknownAmountsOfNumber(){
+    void testThatAddWorksWithUnknownAmountsOfNumber(){
         assertThat(KataStringCalculator.add("2,3,12,7")).isEqualTo(24);
     }
 
     @Test
-    public void testThatAddCanHandleLineSeparator(){
+    void testThatAddCanHandleLineSeparator(){
         assertThat(KataStringCalculator.add("1\n2,3")).isEqualTo(6);
 
     }
 
     @Test
-    public void testThatCharSequenceLineBreakAfterCommaFails(){
+    void testThatCharSequenceLineBreakAfterCommaFails(){
         assertThat(KataStringCalculator.add("1,\n")).isZero();
     }
 
     @Test
-    public void testThatDifferentDelimiterWorks(){
+    void testThatDifferentDelimiterWorks(){
         assertThat(KataStringCalculator.add("//;\n1;2")).isEqualTo(3);
     }
 
     @Test
-    public void testAnotherDelimiter(){
+    void testAnotherDelimiter(){
         assertThat(KataStringCalculator.add("//o\n1o2")).isEqualTo(3);
     }
 
     @Test
-    public void negativeNumbersShouldThrowExceptAndPrintNumbers(){
+    void negativeNumbersShouldThrowExceptAndPrintNumbers(){
           Exception exception = assertThrows(NumberFormatException.class,
                    () -> {
                        KataStringCalculator.add("3,-5,-9,-22");
@@ -58,12 +58,12 @@ public class KataStringCalculatorTest {
     }
 
     @Test
-    public void ignoreNumbersLargerThan1000(){
+    void ignoreNumbersLargerThan1000(){
         assertThat(KataStringCalculator.add("2,3,1007")).isEqualTo(5);
     }
 
     @Test
-    public void multipleDelimitersShouldWork(){
+    void multipleDelimitersShouldWork(){
         assertThat(KataStringCalculator.add("//[***]\n1***2***3")).isEqualTo(6);
     }
 }
