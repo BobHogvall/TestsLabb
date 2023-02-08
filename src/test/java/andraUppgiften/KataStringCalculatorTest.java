@@ -62,4 +62,8 @@ public class KataStringCalculatorTest {
         assertThat(KataStringCalculator.add("2,3,1007")).isEqualTo(5);
     }
 
+    @Test
+    public void multipleDelimitersShouldWork(){
+        assertThat(KataStringCalculator.add("//[***]\n1***2***3")).isEqualTo(6);
+    }
 }

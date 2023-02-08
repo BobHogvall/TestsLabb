@@ -2,17 +2,14 @@ package andraUppgiften;
 import java.util.Arrays;
 
 public class KataStringCalculator {
-
     public static int add(String numbers) {
         var sum = 0;
         if (numbers.contains(",\n")){
             return sum;
         } else if (numbers.startsWith("//")){
-            var delimiter = numbers.charAt(2);
-            var newNumbers = numbers.substring(4);
-            sum = Arrays.stream(newNumbers.replace(',', delimiter).split(String.valueOf(delimiter)))
-                        .mapToInt(Integer::parseInt)
-                        .sum();
+            sum = Arrays.stream(cutString(numbers).replace(delimiter(numbers),",").split(","))
+                .mapToInt(Integer::parseInt)
+                .sum();
             return sum;
         } else if (numbers.contains("-")){
             Arrays.stream(numbers.split("[,\n]"))
@@ -20,8 +17,7 @@ public class KataStringCalculator {
                     .filter(n -> n < 0)
                     .forEach(System.out::println);
             throw new NumberFormatException("negatives not allowed");
-        }
-        else {
+        } else {
             try {
                 sum = Arrays.stream(numbers.split("[,\n]"))
                         .mapToInt(Integer::parseInt)
@@ -32,5 +28,14 @@ public class KataStringCalculator {
                 return sum;
             }
         }
+    }
+
+    private static String delimiter(String numbers){ //skapar en ny sträng av det som ska användas som delimiter
+        return numbers.substring(2, numbers.indexOf("\n"))
+                .replaceAll("\\[","")
+                .replaceAll("\\]","");
+    }
+    private static String cutString(String numbers){ //tar bort allt innan radbrytning
+        return numbers.substring(numbers.indexOf("\n")+1);
     }
 }
