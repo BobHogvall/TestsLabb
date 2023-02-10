@@ -12,7 +12,7 @@ public class KataStringCalculator {
                     .mapToInt(Integer::parseInt)
                     .sum();
         } else if (numbers.contains("][")) {
-            return Arrays.stream(cutString(numbers).split(delimiters(numbers)))
+            return Arrays.stream(cutString(numbers).split(multipleDelimiters(numbers)))
                     .mapToInt(Integer::parseInt)
                     .sum();
         } else if (numbers.contains("-")){
@@ -39,7 +39,7 @@ public class KataStringCalculator {
                     .replace("]", "");
 
     }
-    private static String delimiters(String numbers){
+    private static String multipleDelimiters(String numbers){
         return numbers.substring(2, numbers.indexOf("\n"))
                 .replace("][","|")
                 .replace("[", "")
