@@ -1,4 +1,4 @@
-package andraUppgiften;
+package calculator;
 import java.util.Arrays;
 
 public class StringCalculator {
