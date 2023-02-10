@@ -77,4 +77,13 @@ class StringCalculatorTest {
     void tryDifferentDelimitersWithThreeStars(){
         assertThat(StringCalculator.add("//[***][%]\n1***2%3")).isEqualTo(6);
     }
+
+    @Test
+    void negativeWithSlash(){
+        Exception exception = assertThrows(NumberFormatException.class,
+                () -> StringCalculator.add("//;\n3;-5;-9;-22"));
+        String expectedMessage = "negatives not allowed";
+        assertThat(exception.getMessage()).isEqualTo(expectedMessage);
+        System.out.println(expectedMessage);
+    }
 }
