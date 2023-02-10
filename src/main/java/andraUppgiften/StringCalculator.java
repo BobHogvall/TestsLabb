@@ -1,7 +1,7 @@
 package andraUppgiften;
 import java.util.Arrays;
 
-public class KataStringCalculator {
+public class StringCalculator {
 
     public static int add(String numbers) {
         var sum = 0;

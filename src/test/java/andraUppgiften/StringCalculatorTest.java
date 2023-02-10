@@ -4,50 +4,50 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class KataStringCalculatorTest {
+class StringCalculatorTest {
 
     @Test
     void testAdd(){
-        var test = KataStringCalculator.add("2,3");    //given
+        var test = StringCalculator.add("2,3");    //given
         assertThat(test).isEqualTo(5);  //then and when
     }
 
     @Test
     void testThatAddWorksWithException(){
-        var testShouldFail = KataStringCalculator.add(",3");
+        var testShouldFail = StringCalculator.add(",3");
         assertThat(testShouldFail).isZero();
     }
 
     @Test
     void testThatAddWorksWithUnknownAmountsOfNumber(){
-        assertThat(KataStringCalculator.add("2,3,12,7")).isEqualTo(24);
+        assertThat(StringCalculator.add("2,3,12,7")).isEqualTo(24);
     }
 
     @Test
     void testThatAddCanHandleLineSeparator(){
-        assertThat(KataStringCalculator.add("1\n2,3")).isEqualTo(6);
+        assertThat(StringCalculator.add("1\n2,3")).isEqualTo(6);
 
     }
 
     @Test
     void testThatCharSequenceLineBreakAfterCommaFails(){
-        assertThat(KataStringCalculator.add("1,\n")).isZero();
+        assertThat(StringCalculator.add("1,\n")).isZero();
     }
 
     @Test
     void testThatDifferentDelimiterWorks(){
-        assertThat(KataStringCalculator.add("//;\n1;2")).isEqualTo(3);
+        assertThat(StringCalculator.add("//;\n1;2")).isEqualTo(3);
     }
 
     @Test
     void testAnotherDelimiter(){
-        assertThat(KataStringCalculator.add("//o\n1o2")).isEqualTo(3);
+        assertThat(StringCalculator.add("//o\n1o2")).isEqualTo(3);
     }
 
     @Test
     void negativeNumbersShouldThrowExceptAndPrintNumbers(){
           Exception exception = assertThrows(NumberFormatException.class,
-                   () -> KataStringCalculator.add("3,-5,-9,-22"));
+                   () -> StringCalculator.add("3,-5,-9,-22"));
            String expectedMessage = "negatives not allowed";
            assertThat(expectedMessage).isEqualTo(exception.getMessage());
         System.out.println(expectedMessage);
@@ -55,26 +55,26 @@ class KataStringCalculatorTest {
 
     @Test
     void ignoreNumbersLargerThan1000(){
-        assertThat(KataStringCalculator.add("2,3,1007")).isEqualTo(5);
+        assertThat(StringCalculator.add("2,3,1007")).isEqualTo(5);
     }
 
     @Test
     void multipleDelimitersShouldWork(){
-        assertThat(KataStringCalculator.add("//[***]\n1***2***3")).isEqualTo(6);
+        assertThat(StringCalculator.add("//[***]\n1***2***3")).isEqualTo(6);
     }
 
     @Test
     void differentDelimitersShouldWorkSimultaneously(){
-        assertThat(KataStringCalculator.add("//[*][%]\n1*2%3")).isEqualTo(6);
+        assertThat(StringCalculator.add("//[*][%]\n1*2%3")).isEqualTo(6);
     }
 
     @Test
     void differentDelimitersLongerThanOneCharacter(){
-        assertThat(KataStringCalculator.add("//[**][%%][oo]\n1**2%%3oo4")).isEqualTo(10);
+        assertThat(StringCalculator.add("//[**][%%][oo]\n1**2%%3oo4")).isEqualTo(10);
     }
 
     @Test
     void tryDifferentDelimitersWithThreeStars(){
-        assertThat(KataStringCalculator.add("//[***][%]\n1***2%3")).isEqualTo(6);
+        assertThat(StringCalculator.add("//[***][%]\n1***2%3")).isEqualTo(6);
     }
 }
