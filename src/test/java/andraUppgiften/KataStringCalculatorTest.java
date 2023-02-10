@@ -62,4 +62,9 @@ class KataStringCalculatorTest {
     void multipleDelimitersShouldWork(){
         assertThat(KataStringCalculator.add("//[***]\n1***2***3")).isEqualTo(6);
     }
+
+    @Test
+    void differentDelimitersShouldWorkSimultaneously(){
+        assertThat(KataStringCalculator.add("//[*][%]\n1*2%3")).isEqualTo(6);
+    }
 }
