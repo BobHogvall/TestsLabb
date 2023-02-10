@@ -67,4 +67,14 @@ class KataStringCalculatorTest {
     void differentDelimitersShouldWorkSimultaneously(){
         assertThat(KataStringCalculator.add("//[*][%]\n1*2%3")).isEqualTo(6);
     }
+
+    @Test
+    void differentDelimitersLongerThanOneCharacter(){
+        assertThat(KataStringCalculator.add("//[**][%%][oo]\n1**2%%3oo4")).isEqualTo(10);
+    }
+
+    @Test
+    void tryDifferentDelimitersWithThreeStars(){
+        assertThat(KataStringCalculator.add("//[***][%]\n1***2%3")).isEqualTo(6);
+    }
 }
